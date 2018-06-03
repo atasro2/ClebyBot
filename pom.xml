@@ -1,0 +1,228 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>me.mcboy.clebybot</groupId>
+	<artifactId>CLEBYBOT</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.youtube.version>v3-rev182-1.22.0</project.youtube.version>
+		<project.youtube.analytics.version>v1-rev63-1.22.0</project.youtube.analytics.version>
+		<project.youtube.reporting.version>v1-rev10-1.22.0</project.youtube.reporting.version>
+		<project.http.version>1.20.0</project.http.version>
+		<project.oauth.version>1.20.0</project.oauth.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jackson.version>2.9.5</jackson.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>
+										com.github.atasro2.clebybot.MessageListener
+									</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.dv8tion</groupId>
+			<artifactId>JDA</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sedmelluq</groupId>
+			<artifactId>jda-nas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.9</version>
+		</dependency>
+		<dependency>
+    <!-- Note: core-annotations version x.y.0 is generally compatible with
+         (identical to) version x.y.1, x.y.2, etc. -->
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-annotations</artifactId>
+    <version>${jackson.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>${jackson.version}</version>
+  </dependency>
+    <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>${jackson.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>com.sedmelluq</groupId>
+    <artifactId>lavaplayer</artifactId>
+    <version>1.2.63</version>
+  </dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<!-- YouTube Data V3 support -->
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-youtube</artifactId>
+		</dependency>
+
+		<!-- Required for any code that makes calls to the YouTube Analytics API -->
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-youtubeAnalytics</artifactId>
+		</dependency>
+
+		<!-- Required for any code that makes calls to the YouTube Reporting API -->
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-youtubereporting</artifactId>
+		</dependency>
+
+		<!-- This dependency is only used for the Topics API sample, which requires 
+			the Jackson JSON parser -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.http-client</groupId>
+			<artifactId>google-http-client-jackson2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.oauth-client</groupId>
+			<artifactId>google-oauth-client-jetty</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.collections</groupId>
+			<artifactId>google-collections</artifactId>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>google-api-services</id>
+			<url>http://google-api-client-libraries.appspot.com/mavenrepo</url>
+		</repository>
+  <repository>
+    <id>central</id>
+    <name>bintray</name>
+    <url>http://jcenter.bintray.com</url>
+  </repository>
+    <repository>
+    <id>mcboy</id>
+    <url>http://lizardmc.ir</url>
+  </repository>
+
+	</repositories>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.dv8tion</groupId>
+				<artifactId>JDA</artifactId>
+				<version>3.6.0_354</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sedmelluq</groupId>
+				<artifactId>jda-nas</artifactId>
+				<version>1.0.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sedmelluq</groupId>
+				<artifactId>lavaplayer</artifactId>
+				<version>1.2.63</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.8.5</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.apis</groupId>
+				<artifactId>google-api-services-youtube</artifactId>
+				<version>${project.youtube.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.apis</groupId>
+				<artifactId>
+					google-api-services-youtubeAnalytics
+				</artifactId>
+				<version>${project.youtube.analytics.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.apis</groupId>
+				<artifactId>
+					google-api-services-youtubereporting
+				</artifactId>
+				<version>${project.youtube.reporting.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.http-client</groupId>
+				<artifactId>google-http-client-jackson2</artifactId>
+				<version>${project.http.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.oauth-client</groupId>
+				<artifactId>google-oauth-client-jetty</artifactId>
+				<version>${project.oauth.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.collections</groupId>
+				<artifactId>google-collections</artifactId>
+				<version>1.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
+
+ 

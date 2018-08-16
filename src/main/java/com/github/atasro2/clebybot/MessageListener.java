@@ -63,7 +63,7 @@ public class MessageListener extends ListenerAdapter {
 			"https://pm1.narvii.com/6496/326fad2731e4aa21b6b3371d8e595fe6a407e4ce_hq.jpg",
 			"http://i0.kym-cdn.com/photos/images/newsfeed/001/125/930/08c.jpg" };
 	Emote emote;
-	String Syntax = "!";
+	String Prefix = "!";
 	private static AudioPlayerManager playerManager;
 	private static Map<Long, GuildMusicManager> musicManagers;
 	private static SearchResult singleVideo;
@@ -105,7 +105,7 @@ public class MessageListener extends ListenerAdapter {
 			Message message = event.getMessage();
 			String[] content = message.getContentRaw().split(" ");
 			Guild guild = event.getGuild();
-			if (content[0].equals(this.Syntax + "user")) {
+			if (content[0].equals(this.Prefix + "user")) {
 
 				Member memb;
 
@@ -165,7 +165,7 @@ public class MessageListener extends ListenerAdapter {
 			}
 			if (event.getAuthor().isBot())
 				return;
-			if (content[0].equals(this.Syntax + "ping")) {
+			if (content[0].equals(this.Prefix + "ping")) {
 				MessageChannel channel = event.getChannel();
 				channel.sendMessage("Pong!").queue(); // Important to call
 														// .queue()
@@ -175,7 +175,7 @@ public class MessageListener extends ListenerAdapter {
 			}
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-			if (content[0].equals(this.Syntax + "time")) {
+			if (content[0].equals(this.Prefix + "time")) {
 				MessageChannel channel = event.getChannel();
 				channel.sendMessage(sdf.format(cal.getTime())).queue(); // Important
 																		// to
@@ -189,7 +189,7 @@ public class MessageListener extends ListenerAdapter {
 																		// sendMessage(...)
 				channel.addReactionById(content.toString(), event.getGuild().getEmoteById("436138591056429066"));
 			}
-			if (content[0].equals(this.Syntax + "sanic")) {
+			if (content[0].equals(this.Prefix + "sanic")) {
 				MessageChannel channel = event.getChannel();
 				channel.sendMessage(new EmbedBuilder().setColor(new Color(0xFF00C7))
 						.setDescription("RUNNING AT THE SPEED OF SOUND!").setImage(getWord(sanics)).build()).queue(); // Important
@@ -200,17 +200,17 @@ public class MessageListener extends ListenerAdapter {
 			if (content[0].equals("hi")) {
 				message.addReaction(message.getGuild().getEmoteById("436138448307486722")).queue();
 			}
-			if (content[0].equals(this.Syntax + "catfact")) {
+			if (content[0].equals(this.Prefix + "catfact")) {
 				event.getTextChannel()
 						.sendMessage(new EmbedBuilder().setColor(new Color(0xFF00C7)).setDescription(get()).build())
 						.queue();
 			}
-			if (content[0].equals(this.Syntax + "dogfact")) {
+			if (content[0].equals(this.Prefix + "dogfact")) {
 				event.getTextChannel()
 						.sendMessage(new EmbedBuilder().setColor(new Color(0xFF00C7)).setDescription(getdog()).build())
 						.queue();
 			}
-			if (content[0].equals(this.Syntax + "strawpoll")) {
+			if (content[0].equals(this.Prefix + "strawpoll")) {
 				MessageChannel channel = event.getChannel();
 				StrawPoll strawPoll = new StrawPoll(String.valueOf(content[1]).replace("_", " "),
 						String.valueOf(content[2]), String.valueOf(content[3]));
@@ -219,13 +219,13 @@ public class MessageListener extends ListenerAdapter {
 									// to the API
 				channel.sendMessage(strawPoll.getPollURL()).queue();
 			}
-			if (content[0].equals(this.Syntax + "floof")) {
+			if (content[0].equals(this.Prefix + "floof")) {
 				event.getTextChannel()
 						.sendMessage(new EmbedBuilder().setColor(new Color(0xFF00C7)).setDescription("So kawaiiii")
 								.setImage(getstr("https://randomfox.ca/floof", "image").replace("\\", "")).build())
 						.queue();
 			}
-			if (content[0].equals(this.Syntax + "meow")) {
+			if (content[0].equals(this.Prefix + "meow")) {
 				event.getTextChannel()
 						.sendMessage(new EmbedBuilder().setColor(new Color(0xFF00C7))
 								.setDescription("Oh hey narus relatives")
@@ -233,7 +233,7 @@ public class MessageListener extends ListenerAdapter {
 						.queue();
 			}
 
-			if (content[0].equals(this.Syntax + "dadjoke")) {
+			if (content[0].equals(this.Prefix + "dadjoke")) {
 				event.getTextChannel().sendMessage(new EmbedBuilder().setColor(new Color(0xFF00C7))
 						.setDescription(getstr("http://icanhazdadjoke.com/", "joke")).build()).queue();
 			}
@@ -241,14 +241,14 @@ public class MessageListener extends ListenerAdapter {
 			if (guild != null) {
 				if (content[0].equals("!" + "play") && content.length == 2) {
 					loadAndPlay(event.getTextChannel(), content[1]);
-				} else if (content[0].equals(this.Syntax + "skip")) {
+				} else if (content[0].equals(this.Prefix + "skip")) {
 					skipTrack(event.getTextChannel());
-				} else if (content[0].equals(this.Syntax + "volume")) {
+				} else if (content[0].equals(this.Prefix + "volume")) {
 					volume(event.getTextChannel(), Integer.valueOf(content[1]));
 				}
 			}
 
-			if (content[0].equals(this.Syntax + "maintenance")) {
+			if (content[0].equals(this.Prefix + "maintenance")) {
 				Member memb;
 
 				memb = event.getMember();
@@ -266,13 +266,13 @@ public class MessageListener extends ListenerAdapter {
 		else {
 			Message message = event.getMessage();
 			String[] content = message.getContentRaw().split(" ");
-			if (content[0].equals(this.Syntax + "help")) {
+			if (content[0].equals(this.Prefix + "help")) {
 				event.getTextChannel()
 						.sendMessage(new EmbedBuilder().setColor(new Color(0xFF00C7))
 								.setDescription("the bot is in maintenance at the moment please try later").build())
 						.queue();
 			}
-			if (content[0].equals(this.Syntax + "maintenance")) {
+			if (content[0].equals(this.Prefix + "maintenance")) {
 				Member memb;
 
 				memb = event.getMember();
